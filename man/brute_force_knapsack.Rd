@@ -4,7 +4,7 @@
 \alias{brute_force_knapsack}
 \title{brute-force search is a algorithm which is guaranteed to give a correct answer in all situations for the knapsack problem.}
 \usage{
-brute_force_knapsack(x, w)
+brute_force_knapsack(x, W)
 }
 \arguments{
 \item{x}{a data frame which contains two variables v and w, stands for each items value and weight respectively.}
