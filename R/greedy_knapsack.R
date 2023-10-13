@@ -39,11 +39,11 @@ greedy_knapsack <- function(x,W){
 
   for(i in 1:nrow(x)){
 
-    w <- total_weight + sum(x$w[i])
+    w <- total_weight + x$w[i]
 
     if(w <= W){
       total_weight <- w
-      total_value <- total_value + sum(x$v[i])
+      total_value <- total_value + x$v[i]
       elements <- c(elements, rownames(x[i, ]))
     }
     else if (w > W)(
