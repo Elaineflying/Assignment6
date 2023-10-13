@@ -12,41 +12,46 @@
 #' @import methods
 #' @export greedy_knapsack
 # Greedy knapsack algorithm
-greedy_knapsack <- function(x, W) {
+greedy_knapsack <- function(x,W){
 
-  # Checking x argument
-  if ( !(is.data.frame(x) && any(x > 0)) ) {
-    stop("The argument x should be a data frame with two variables v and w, with only positive values")
+  # Check for inputs
+  stopifnot(is.data.frame(x))
+  stopifnot(c("v", "w") %in% names(x))
+  stopifnot(is.numeric(x$w)&&is.numeric(x$v))
+  stopifnot(any(x$w <= W) || any(x$v > 0) )
+  stopifnot(W > 0)
+
+  # initialization
+  total_weight <- 0
+  total_value <- 0
+  elements <- c()
+
+  # Remove all the values before hand whose weights are greater than the given Max weight W
+  discard <- which(x$w > W)
+  if(length(discard)>0){
+    x <- x[-1, ]
   }
-  # Checking W argument
-  if ( !(is.numeric(W) && W > 0)) {
-    stop("The argument W should be a postive integer, please check!")
-  }
-  # Sort the items in decreasing order of value-to-weight ratio.
-  x <- x[order(x[, 2] / x[, 1], decreasing = TRUE), ]
-  value<-0
-  elements<-integer(0)
-  weight <- 0
 
-  # Initialize the knapsack.
-  knapsack <- list(value=value, elements=elements)
+  # Need ration of v/w
+  x$p_val <- x$v/x$w
+  x <- x[order(x$p_val, decreasing=TRUE), ]
 
-  # Iterate over the items in sorted order.
-  for (i in 1:nrow(x)) {
-    item <- x[i, ]
 
-    # Choosing integer values for if loop
-    item_weight <- as.integer(item[1])
-    item_value <- as.integer(item[2])
+  for(i in 1:nrow(x)){
 
-    # If the item fits in the knapsack, add it.
-    if (item_weight + weight <= W) {
-      knapsack$value <- knapsack$value + item_value  # Store the values
-      knapsack$elements <- c(knapsack$elements, i)  # Store the index of the item.
-      weight <- weight + item_weight   # Store the weights
+    w <- total_weight + sum(x$w[i])
+
+    if(w <= W){
+      total_weight <- w
+      total_value <- total_value + sum(x$v[i])
+      elements <- c(elements, rownames(x[i, ]))
+    }
+    else if (w > W)(
+      return(list(value = round(total_value, 0), elements = as.numeric(elements)))
+    )
+    if(i == nrow(x)) {
+      return(list(value = round(total_value, 0), elements = as.numeric(elements)))
     }
   }
 
-  return(knapsack)
 }
-
