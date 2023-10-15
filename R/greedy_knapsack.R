@@ -7,9 +7,6 @@
 #' @examples
 #' greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
 #' greedy_knapsack(x = knapsack_objects[1:1200,], W = 2000)
-#' @import plyr
-#' @import ggplot2
-#' @import methods
 #' @export greedy_knapsack
 # Greedy knapsack algorithm
 greedy_knapsack <- function(x,W){
@@ -27,10 +24,13 @@ greedy_knapsack <- function(x,W){
   elements <- c()
 
   # Remove all the values before hand whose weights are greater than the given Max weight W
-  discard <- which(x$w > W)
-  if(length(discard)>0){
-    x <- x[-1, ]
-  }
+  #discard <- which(x$w > W)
+  #if(length(discard)>0){
+  #  x <- x[-1, ]
+  #  #for (i in 1:length(discard)) {
+  #  #  x <- x[-i,]
+  #  #}
+  #}
 
   # Need ration of v/w
   x$p_val <- x$v/x$w

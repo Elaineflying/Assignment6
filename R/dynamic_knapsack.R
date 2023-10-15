@@ -17,7 +17,7 @@
 #' @export dynamic_knapsack
 dynamic_knapsack <- function(x,W) {
   # Checking x argument
-  if ( !(is.data.frame(x) && any(x > 0)) ) {
+  if ( !(is.data.frame(x) && any(x > 0) && all(names(x) %in% c("w", "v"))) ) {
     stop("The argument x should be a data frame with two variables v and w, with only positive values")
   }
   # Checking W argument
@@ -29,10 +29,10 @@ dynamic_knapsack <- function(x,W) {
   x_mat <- matrix(0, nrow = num_items + 1, ncol = W + 1)
   for (i in 1:num_items) {
     for ( j in 0:W) {
-      if ( x[i, "w"] <= j) {
+      if ( x$w[i] <= j) {
         x_mat[i + 1, j] <- max(
           x_mat[i, j],
-          x_mat[i, j - x[i, "w"]] + x[i, "v"]
+          x_mat[i, j - x$w[i]] + x$v[i]
         )
       } else {
         x_mat[i + 1, j] <- x_mat[i, j]
@@ -46,7 +46,7 @@ dynamic_knapsack <- function(x,W) {
   while ( i > 0 && j > 0) {
     if (x_mat[i + 1,j] != x_mat[i, j]) {
       best_elements[i] <- 1
-      j <- j - x[i, "w"]
+      j <- j - x$w[i]
     }
     i <- i - 1
   }

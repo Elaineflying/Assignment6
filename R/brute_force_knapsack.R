@@ -17,7 +17,7 @@
 #' @export brute_force_knapsack
 brute_force_knapsack <- function(x,W) {
   # Checking x argument
-  if ( !(is.data.frame(x) && any(x > 0)) ) {
+  if ( !(is.data.frame(x) && any(x > 0) && all(names(x) %in% c("w", "v"))) ) {
     stop("The argument x should be a data frame with two variables v and w, with only positive values")
   }
   # Checking W argument
