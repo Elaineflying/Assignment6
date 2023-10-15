@@ -71,19 +71,13 @@ Question How much time does it takes to run the algorithm for n = 500 objects?
 
 ### Using Greedy Heuristic Search to solve knapsack problems
 ```{r}
-greedy_knapsack(x = knapsack_objects[1:8,], W = 3500)
+greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
 ```
 ```{r}
-greedy_knapsack(x = knapsack_objects[1:12,], W = 3500)
+greedy_knapsack(x = knapsack_objects[1:1200,], W = 2000)
 ```
 ```{r}
-greedy_knapsack(x = knapsack_objects[1:8,], W = 2000)
-```
-```{r}
-greedy_knapsack(x = knapsack_objects[1:12,], W = 2000)
-```
-```{r}
-greedy_knapsack(x = knapsack_objects[1:500,], W = 2000)
+greedy_knapsack(x = knapsack_objects[1:1000000,], W = 2000)
 ```
 Question How much time does it takes to run the algorithm for n = 1000000 objects?
 
