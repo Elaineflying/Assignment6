@@ -16,15 +16,16 @@
 #' brute_force_knapsack_parallel(x = knapsack_objects[1:8,], W = 3500)
 #' @import parallel
 #' @import profvis
+#' @import utils
 #' @export brute_force_knapsack_parallel
 
 
 
-brute_force_knapsack_parallel <- function(x, W, parallel=FALSE)
+brute_force_knapsack_parallel <- function(x, W, ifParallel=FALSE)
 {
   stopifnot(is.data.frame(x),W >= 0)
 
-  if(parallel == FALSE)
+  if(ifParallel == FALSE)
   {
     object <- NULL
     weight <- NULL
