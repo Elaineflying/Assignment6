@@ -13,6 +13,10 @@ Description: This package will contain three different functions for solving kna
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.2.3
+Imports:
+    parallel,
+    profvis,
+    utils
 Suggests: 
     knitr,
     rmarkdown,
