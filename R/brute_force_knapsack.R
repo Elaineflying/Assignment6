@@ -47,7 +47,7 @@ brute_force_knapsack <- function(x,W) {
 }
 
 
-system.time(brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500))
+#system.time(brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500))
 
 p<-profvis::profvis({
   interval=0.01

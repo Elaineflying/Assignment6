@@ -1,12 +1,25 @@
 #' Dynamic search using Rcpp to solve the knapsack problem.
-# Install and load the Rcpp package if not already installed
-#if (!requireNamespace("Rcpp", quietly = TRUE)) {
-#  install.packages("Rcpp")
-#}
-#library(Rcpp)
-#' @improt Rcpp
-#' @export dynamic_knapsack_cpp
-cppFunction( code = '
+#' include <Rcpp.h>
+#' using namespace Rcpp;
+#' @references Reference page link <https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem>
+#' @description Dynamic search using Rcpp and C++
+#' @param x a data frame which contains two variables v and w, stands for each items value and weight respectively.
+#' @param W a postive integer which stands for the knapsack size
+#' @returns the maximum knapsack value and which elements.
+#' @examples
+#' RNGversion(min(as.character(getRversion()),"3.5.3"))
+#' set.seed(42, kind = "Mersenne-Twister", normal.kind = "Inversion")
+#' n <- 2000
+#' knapsack_objects <-
+#' data.frame(
+#' w=sample(1:4000, size = n, replace = TRUE),
+#' v=runif(n = n, 0, 10000)
+#' )
+#' dynamic_knapsack_cpp(x = knapsack_objects[1:8,], W = 3500)
+#' @import Rcpp
+#' @export
+#' [[Rcpp::export]]
+Rcpp::cppFunction( code = '
 List dynamic_knapsack_cpp (DataFrame x, int W) {
   NumericVector weights = x["w"];
   NumericVector values = x["v"];
