@@ -4,12 +4,14 @@
 \alias{brute_force_knapsack_parallel}
 \title{brute-force search is a algorithm which is guaranteed to give a correct answer in all situations for the knapsack problem.}
 \usage{
-brute_force_knapsack_parallel(x, W, ifParallel = FALSE)
+brute_force_knapsack_parallel(x, W, parallel = FALSE)
 }
 \arguments{
 \item{x}{a data frame which contains two variables v and w, stands for each items value and weight respectively.}
 
 \item{W}{a postive integer which stands for the knapsack size}
+
+\item{parallel}{to determine if using parallel to executue}
 }
 \value{
 the maximum knapsack value and which elements.

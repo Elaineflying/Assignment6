@@ -3,6 +3,7 @@
 #' @description brute_force search is going through all possible alternatives and return the maximum value found.
 #' @param x a data frame which contains two variables v and w, stands for each items value and weight respectively.
 #' @param W a postive integer which stands for the knapsack size
+#' @param parallel to determine if using parallel to executue
 #' @returns the maximum knapsack value and which elements.
 #' @examples
 #' RNGversion(min(as.character(getRversion()),"3.5.3"))
@@ -21,11 +22,11 @@
 
 
 
-brute_force_knapsack_parallel <- function(x, W, ifParallel=FALSE)
+brute_force_knapsack_parallel <- function(x, W, parallel=FALSE)
 {
   stopifnot(is.data.frame(x),W >= 0)
 
-  if(ifParallel == FALSE)
+  if(parallel == FALSE)
   {
     object <- NULL
     weight <- NULL
