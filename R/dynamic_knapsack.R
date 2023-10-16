@@ -25,7 +25,7 @@ dynamic_knapsack <- function(x,W) {
     stop("The argument W should be a postive integer, please check!")
   }
   num_items <- nrow(x)
-  #create a dynamic programming table to store the maximum values
+  #create a matrix table to store the maximum values
   x_mat <- matrix(0, nrow = num_items + 1, ncol = W + 1)
   for (i in 1:num_items) {
     for ( j in 0:W) {

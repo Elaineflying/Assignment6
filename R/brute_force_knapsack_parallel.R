@@ -19,27 +19,6 @@
 #' @export brute_force_knapsack_parallel
 
 
-p<-profvis::profvis({
-  interval=0.01
-
-  RNGversion(min(as.character(getRversion()),"3.5.3"))
-  set.seed(42, kind = "Mersenne-Twister", normal.kind = "Inversion")
-  n <- 2000
-  knapsack_objects <-data.frame(
-    w=sample(1:4000, size = n, replace = TRUE),
-    v=runif(n = n, 0, 10000)
-  )
-
-
-
-  brute_force_knapsack_parallel(x = knapsack_objects[1:16,], W = 3500)
-
-})
-
-
-print(p)
-
-
 
 brute_force_knapsack_parallel <- function(x, W, parallel=FALSE)
 {
@@ -100,3 +79,26 @@ brute_force_knapsack_parallel <- function(x, W, parallel=FALSE)
   knapsack <- list(value = round(max_value),elements= elements)
   return(knapsack)
 }
+
+
+p<-profvis::profvis({
+  interval=0.01
+
+  suppressWarnings(RNGversion(min(as.character(getRversion()),"3.5.3")))
+  set.seed(42, kind = "Mersenne-Twister", normal.kind = "Inversion")
+  n <- 2000
+  knapsack_objects <-data.frame(
+    w=sample(1:4000, size = n, replace = TRUE),
+    v=runif(n = n, 0, 10000)
+  )
+
+
+
+  brute_force_knapsack_parallel(x = knapsack_objects[1:16,], W = 3500)
+
+})
+
+
+print(p)
+
+
